@@ -6,7 +6,7 @@
 
 An entry for the [One-Line Office Joke Laugh-Off](https://make.fun/bounty/u-suzy-one-line-office-joke-laugh-off-f574ac73) bounty on make.fun.
 
-The program writes one original one-line joke about office life to `/output/entry.txt`. The joke plays on a piece of corporate jargon — "bring your whole self to work" — and lands its punchline on the one thing nobody expects an employee to bring.
+The entry is a single original line of office humour. Its setup quotes the familiar HR slogan about bringing your whole self to work; the punchline answers the slogan literally, with the last thing any manager expects an employee to carry through the door.
 
 Run it with Node 22:
 

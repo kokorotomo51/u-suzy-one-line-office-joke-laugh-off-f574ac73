@@ -1,17 +1,29 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
+// Entry writer for the One-Line Office Joke Laugh-Off.
+//
+// The joke is kept as a list of beats and assembled with a join, so
+// the two halves — the HR platitude and the reversal — are data the
+// program walks over, rather than a single hard-coded sentence. The
+// assembled text is the whole entry; nothing else is written.
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
-// The joke is assembled from its two beats so the setup and the
-// punchline stay independently editable: a corporate platitude,
-// then the one thing nobody expects an employee to bring along.
-function buildJoke(): string {
-  const setup = "HR said to bring my whole self to work";
-  const punchline = "so I brought my resignation letter.";
-  return `${setup}, ${punchline}`;
+const OUT_DIR = "/output";
+const ENTRY_FILE = "entry.txt";
+
+// Beat 0 sets the trap (the corporate slogan); beat 1 springs it
+// (the one thing no employee is ever expected to bring along).
+const BEATS: readonly string[] = [
+  "HR said to bring my whole self to work",
+  "so I brought my resignation letter.",
+];
+
+function assemble(beats: readonly string[]): string {
+  return beats.join(", ");
 }
 
-const outDir = "/output";
-const outFile = path.join(outDir, "entry.txt");
+function main(): void {
+  mkdirSync(OUT_DIR, { recursive: true });
+  writeFileSync(join(OUT_DIR, ENTRY_FILE), assemble(BEATS), "utf8");
+}
 
-fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(outFile, buildJoke(), "utf8");
+main();
